@@ -1,0 +1,87 @@
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header, span {
+  display: block;
+  justify-content: center;
+}
+
+h1 {
+  background-image: linear-gradient(to bottom, rgb(5, 22, 8), #0b331c);
+  color: #FFF;
+  text-shadow: 5px 5px 5px rgba(0,0,0, .3);
+  padding: 30px;
+  font-size: 1.6em;
+  text-align: center;
+  box-shadow: 0 5px 5px rgba(0,0,0, .3);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 50px 15px 0px;
+  width: 400px;
+}
+
+input {
+  border-radius: 5px 5px 5px 5px;
+}
+
+button {
+  background-image: linear-gradient(to bottom, rgb(5, 22, 8), #0b331c);
+  border: 0;
+  color: #fff;
+  padding: 10px 20px;
+  width: 50%;
+  margin-top: 5px;
+  font-size: 0.95em;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  min-width: 400px;
+  width: 700px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color: #0b331c;
+  color: #ffffff;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border: 1px solid #CCC;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #0b331c;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+img {
+  max-width: 230px;
+  max-height: 230px;
+}
+
