@@ -40,28 +40,49 @@
       createNewCar: function createNewCar() {
         var $fragment = doc.createDocumentFragment();
         var $tr = doc.createElement('tr');
-        var $tdImagem = doc.createElement('td');
-        var $imagem = doc.createElement('img');
-        var $tdMarcaModelo = doc.createElement('td');
-        var $tdAno = doc.createElement('td');
-        var $tdCor = doc.createElement('td');
-        var $tdPreco = doc.createElement('td');
+        var $tdImageCar = doc.createElement('td');
+        var $imageCar = doc.createElement('img');
+        var $brand = doc.createElement('td');
+        var $tdYear = doc.createElement('td');
+        var $tdColor = doc.createElement('td');
+        var $tdPrice = doc.createElement('td');
+        var $tdImgRemoveCar = doc.createElement('td');
+        var $imgRemoveCar = doc.createElement('img');
 
-        $imagem.setAttribute('src', $('[data-js="imagem"]').get().value);
-        $tdImagem.appendChild($imagem);
+        $imageCar.setAttribute('src', $('[data-js="imagem"]').get().value);
+        $tdImageCar.appendChild($imageCar);
 
-        $tdMarcaModelo.textContent = $('[data-js="marca-modelo"]').get().value;
-        $tdAno.textContent = $('[data-js="ano"]').get().value;
-        $tdCor.textContent = $('[data-js="cor"]').get().value;
-        $tdPreco.textContent = $('[data-js="preco"]').get().value;
+        $imgRemoveCar.setAttribute('src', 'imagens/botao-remover.png');
+        $imgRemoveCar.setAttribute('width', '50px');
+        $imgRemoveCar.addEventListener('click', this.removeCar, false);
+        $tdImgRemoveCar.appendChild($imgRemoveCar);
+        
+        $brand.textContent = $('[data-js="marca-modelo"]').get().value;
+        $tdYear.textContent = $('[data-js="ano"]').get().value;
+        $tdColor.textContent = $('[data-js="cor"]').get().value;
+        $tdPrice.textContent = $('[data-js="preco"]').get().value;
 
-        $tr.appendChild($tdImagem);
-        $tr.appendChild($tdMarcaModelo);
-        $tr.appendChild($tdAno);
-        $tr.appendChild($tdCor);
-        $tr.appendChild($tdPreco);
+        $tr.appendChild($imageCar);
+        $tr.appendChild($brand);
+        $tr.appendChild($tdYear);
+        $tr.appendChild($tdColor);
+        $tr.appendChild($tdPrice);
+        $tr.appendChild($tdImgRemoveCar);
+
+        this.clearFormData();
 
         return $fragment.appendChild($tr);
+      },
+      
+      removeCar: function removeCar(e) {
+        e.target.parentNode.parentNode.remove();
+      },
+
+      clearFormData: function clearFormData() {
+        $('[data-js="marca-modelo"]').get().value = '';
+        $('[data-js="ano"]').get().value = '';
+        $('[data-js="cor"]').get().value = '';
+        $('[data-js="preco"]').get().value = '';
       }
     }
   })();
