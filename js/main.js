@@ -5,6 +5,7 @@
     return {
       init: function init() {
         this.companyInfo();
+        this.getTableCars();
         this.initEvents();
       },
 
@@ -33,52 +34,98 @@
 
       handleSubmitForm: function handleSubmitForm(e) {
         event.preventDefault(e);
+        var car = app.setCar();
         var $tableCar = $('[data-js="table-car"]').get();
-        $tableCar.appendChild(app.createNewCar());
+        $tableCar.appendChild(app.createNewCar(car));
+        app.insertCarOnServer();
+        app.clearFormData();
       },
 
-      createNewCar: function createNewCar() {
+      insertCarOnServer: function insertCarOnServer() {
+        var car = app.setCar();
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', 'http://localhost:3000/car', true);
+        ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        ajax.send(
+        'image=' + car.image +
+        '&brandModel=' + car.brandModel +
+        '&year=' + car.year +
+        '&plate=' + car.plate +
+        '&color=' + car.color
+        );
+      },
+
+      getTableCars: function getTableCars() {
+        var ajax = new XMLHttpRequest();
+        ajax.open('GET', 'http://localhost:3000/car', true);
+        ajax.send();
+        ajax.addEventListener('readystatechange', this.updateTableCars, true);
+      },
+
+      updateTableCars: function updateTableCars() {
+        if(app.isReady.call(this)) {
+          var carList = JSON.parse(this.responseText);
+          var $tableCar = $('[data-js="table-car"]').get();
+
+          carList.forEach(function(car) {
+              var $fragment = app.createNewCar(car);
+              $tableCar.appendChild($fragment);
+          });
+        }
+      },
+
+      setCar: function setCars() {
+        var car = {
+          image: $('[data-js="image"]').get().value,
+          brandModel: $('[data-js="brand-model"]').get().value,
+          year: $('[data-js="year"]').get().value,
+          plate: $('[data-js="plate"]').get().value,
+          color: $('[data-js="color"]').get().value,
+        };
+        return car;
+      },
+
+      createNewCar: function createNewCar(car) {
         var $fragment = doc.createDocumentFragment();
         var $tr = doc.createElement('tr');
         var $tdImageCar = doc.createElement('td');
         var $imageCar = doc.createElement('img');
         var $brand = doc.createElement('td');
         var $tdYear = doc.createElement('td');
+        var $tdPlate = doc.createElement('td');
         var $tdColor = doc.createElement('td');
-        var $tdPrice = doc.createElement('td');
         var $tdImgRemoveCar = doc.createElement('td');
         var $imgRemoveCar = doc.createElement('img');
 
-        $imageCar.setAttribute('src', $('[data-js="imagem"]').get().value);
+        $imageCar.setAttribute('src', car.image);
         $tdImageCar.appendChild($imageCar);
 
         $imgRemoveCar.setAttribute('src', 'imagens/botao-remover.png');
         $imgRemoveCar.setAttribute('width', '50px');
         $imgRemoveCar.addEventListener('click', this.removeCar, false);
         $tdImgRemoveCar.appendChild($imgRemoveCar);
-        
-        $brand.textContent = $('[data-js="marca-modelo"]').get().value;
-        $tdYear.textContent = $('[data-js="ano"]').get().value;
-        $tdColor.textContent = $('[data-js="cor"]').get().value;
-        $tdPrice.textContent = $('[data-js="preco"]').get().value;
+
+        $brand.textContent = car.brandModel;
+        $tdYear.textContent = car.year;
+        $tdPlate.textContent = car.plate;
+        $tdColor.textContent = car.color;
 
         $tr.appendChild($imageCar);
         $tr.appendChild($brand);
         $tr.appendChild($tdYear);
+        $tr.appendChild($tdPlate);
         $tr.appendChild($tdColor);
-        $tr.appendChild($tdPrice);
         $tr.appendChild($tdImgRemoveCar);
-
-        this.clearFormData();
 
         return $fragment.appendChild($tr);
       },
-      
+
       removeCar: function removeCar(e) {
         e.target.parentNode.parentNode.remove();
       },
 
       clearFormData: function clearFormData() {
+        $('[data-js="imagem"]').get().value = ''
         $('[data-js="marca-modelo"]').get().value = '';
         $('[data-js="ano"]').get().value = '';
         $('[data-js="cor"]').get().value = '';
@@ -89,3 +136,8 @@
 
   app.init();
 })(window.DOM, document);
+
+
+//FALTA FAZER
+//Arrumar duplicação na inserção.
+//Arrumar o tamanho do botão remover pelo css
