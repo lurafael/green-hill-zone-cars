@@ -90,7 +90,7 @@
         var $tr = doc.createElement('tr');
         var $tdImageCar = doc.createElement('td');
         var $imageCar = doc.createElement('img');
-        var $brand = doc.createElement('td');
+        var $tdBrand = doc.createElement('td');
         var $tdYear = doc.createElement('td');
         var $tdPlate = doc.createElement('td');
         var $tdColor = doc.createElement('td');
@@ -105,13 +105,13 @@
         $imgRemoveCar.addEventListener('click', this.removeCar, false);
         $tdImgRemoveCar.appendChild($imgRemoveCar);
 
-        $brand.textContent = car.brandModel;
+        $tdBrand.textContent = car.brandModel;
         $tdYear.textContent = car.year;
         $tdPlate.textContent = car.plate;
         $tdColor.textContent = car.color;
 
         $tr.appendChild($imageCar);
-        $tr.appendChild($brand);
+        $tr.appendChild($tdBrand);
         $tr.appendChild($tdYear);
         $tr.appendChild($tdPlate);
         $tr.appendChild($tdColor);
@@ -125,11 +125,11 @@
       },
 
       clearFormData: function clearFormData() {
-        $('[data-js="imagem"]').get().value = ''
-        $('[data-js="marca-modelo"]').get().value = '';
-        $('[data-js="ano"]').get().value = '';
-        $('[data-js="cor"]').get().value = '';
-        $('[data-js="preco"]').get().value = '';
+        $('[data-js="image"]').get().value = '';
+        $('[data-js="brand-model"]').get().value = '';
+        $('[data-js="year"]').get().value = '';
+        $('[data-js="plate"]').get().value = '';
+        $('[data-js="color"]').get().value = '';
       }
     }
   })();

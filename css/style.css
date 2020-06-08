@@ -1,5 +1,9 @@
 html, body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Ubuntu, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 header, span {
@@ -8,11 +12,11 @@ header, span {
 }
 
 h1 {
-  background-image: linear-gradient(to bottom, rgb(5, 22, 8), #0b331c);
+  background: rgb(15, 63, 15);
   color: #FFF;
   text-shadow: 5px 5px 5px rgba(0,0,0, .3);
   padding: 30px;
-  font-size: 1.6em;
+  font-size: 1.9em;
   text-align: center;
   box-shadow: 0 5px 5px rgba(0,0,0, .3);
 }
@@ -26,23 +30,31 @@ h1 {
 form {
   display: flex;
   flex-direction: column;
-  margin: 15px 50px 15px 0px;
+  margin: 25px 50px 15px 0px;
   width: 400px;
 }
 
 input {
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 8px;
+  height: 20px;
+  border-style: 1px;
+}
+
+label {
+  margin: 3px 2px;
 }
 
 button {
-  background-image: linear-gradient(to bottom, rgb(5, 22, 8), #0b331c);
+  background: rgb(15, 63, 15);
   border: 0;
   color: #fff;
   padding: 10px 20px;
   width: 50%;
-  margin-top: 5px;
+  margin-top: 20px;
   font-size: 0.95em;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 8px;
+  height: 45px;
+  font-weight: bold;
 }
 
 .content-table {
@@ -52,11 +64,11 @@ button {
   width: 700px;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.35);
 }
 
 .content-table thead tr {
-  background-color: #0b331c;
+  background: rgb(15, 63, 15);
   color: #ffffff;
 }
 
@@ -72,7 +84,7 @@ button {
 }
 
 .content-table tbody tr:last-of-type {
-  border-bottom: 2px solid #0b331c;
+  border-bottom: 3px solid #0b331c;
 }
 
 .content-table tbody tr.active-row {
