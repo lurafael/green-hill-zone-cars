@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="imagens/ninja-readme.png" width="350px" /><br>
+  <img src="imagens/ninja-readme.png" width="300px" /><br>
   Projeto final do curso JavaScript Ninja
 </h1>
 <p align="center">
@@ -16,7 +16,7 @@
 O projeto final do curso JavaScript Ninja foi um CRUD de carros, com a manipulação toda feita por JavaScript. Nesse sistema podemos:
 
  - Cadastrar carros em uma tabela contendo a informações: Imagem, Marca/Modelo, Ano, Placa e Cor;
- - Deletar os carros da tabela (No front-end e no servidor);
+ - Deletar os carros da tabela (No front-end e no servidor).
 
 Essa é uma imagem do layout (Algo padrão, pois não foi o foco do curso essa parte visual... Esse é somente o último dos projetos feitos!).
 
