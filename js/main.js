@@ -121,7 +121,15 @@
       },
 
       removeCar: function removeCar(e) {
-        e.target.parentNode.parentNode.remove();
+        var target = e.target.parentNode;
+        var carPlate = target.parentNode.childNodes[3].textContent;
+        var ajax = new XMLHttpRequest();
+
+        ajax.open('DELETE', 'http://localhost:3000/car', true);
+        ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        ajax.send('plate=' + carPlate);
+
+        target.parentNode.remove();
       },
 
       clearFormData: function clearFormData() {
@@ -136,8 +144,3 @@
 
   app.init();
 })(window.DOM, document);
-
-
-//FALTA FAZER
-//Arrumar duplicação na inserção.
-//Arrumar o tamanho do botão remover pelo css
